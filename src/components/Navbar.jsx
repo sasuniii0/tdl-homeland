@@ -10,52 +10,68 @@ const navLinks = [
 ];
 
 export default function Navbar() {
-  const [open, setOpen]       = useState(false);
+  const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [hidden, setHidden] = useState(false);
+  const [lastScrollY, setLastScrollY] = useState(0);
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 20);
-    window.addEventListener("scroll", onScroll);
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+
+      // Background change
+      setScrolled(currentScrollY > 30);
+
+      // Smart hide on scroll down
+      if (currentScrollY > lastScrollY && currentScrollY > 200) {
+        setHidden(true);
+      } else {
+        setHidden(false);
+      }
+
+      setLastScrollY(currentScrollY);
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [lastScrollY]);
 
   return (
     <header
-      className={`fixed top-0 inset-x-0 z-50 transition-all duration-300 ${
-        scrolled
-          ? "bg-white/95 backdrop-blur-md shadow-soft border-b border-sand-200"
-          : "bg-transparent"
-      }`}
+      className={`fixed top-0 inset-x-0 z-50 transition-all duration-500 ${
+        scrolled ? "bg-white/95 backdrop-blur-lg shadow-lg border-b border-slate-200" : "bg-transparent"
+      } ${hidden ? "-translate-y-full" : "translate-y-0"}`}
     >
       <nav className="max-w-7xl mx-auto px-5 md:px-10 h-16 flex items-center justify-between">
+        
         {/* Logo */}
-        <Link to="/" className="flex items-center gap-2">
-          <div className="w-8 h-8 rounded-lg bg-forest-700 flex items-center justify-center">
-            <span className="text-white text-sm font-bold">T</span>
+        <Link to="/" className="flex items-center gap-2 group">
+          <div className={`w-8 h-8 rounded-2xl flex items-center justify-center transition-all duration-300 ${
+            scrolled ? "bg-slate-900" : "bg-white shadow-md"
+          }`}>
+            <span className={`text-lg font-bold transition-colors ${
+              scrolled ? "text-white" : "text-slate-900"
+            }`}>T</span>
           </div>
-          <span
-            className={`font-serif text-lg font-bold tracking-tight transition-colors ${
-              scrolled ? "text-forest-800" : "text-white"
-            }`}
-          >
-            TDL <span className="text-gold-500">Home</span> Land
+          <span className={`font-serif text-2xl font-bold tracking-tighter transition-colors ${
+            scrolled ? "text-slate-900" : "text-white"
+          }`}>
+            TDL <span className="text-cyan-500">Home</span> Land
           </span>
         </Link>
 
-        {/* Desktop links */}
-        <div className="hidden md:flex items-center gap-8">
+        {/* Desktop Navigation */}
+        <div className="hidden md:flex items-center gap-9">
           {navLinks.map((link) => (
             <NavLink
               key={link.to}
               to={link.to}
               end={link.to === "/"}
               className={({ isActive }) =>
-                `text-sm font-medium transition-colors duration-200 ${
+                `text-sm font-medium transition-all duration-200 hover:text-cyan-600 ${
                   isActive
-                    ? "text-gold-500"
-                    : scrolled
-                    ? "text-forest-700 hover:text-forest-900"
-                    : "text-white/80 hover:text-white"
+                    ? scrolled ? "text-cyan-600 font-semibold" : "text-white"
+                    : scrolled ? "text-slate-600" : "text-white/80"
                 }`
               }
             >
@@ -64,39 +80,45 @@ export default function Navbar() {
           ))}
         </div>
 
-        {/* CTA */}
-        <div className="hidden md:flex items-center gap-3">
+        {/* Desktop CTA */}
+        <div className="hidden md:flex items-center gap-4">
           <a
             href="tel:+94XXXXXXXXX"
             className={`flex items-center gap-2 text-sm font-medium transition-colors ${
-              scrolled ? "text-forest-700" : "text-white/80"
+              scrolled ? "text-slate-700 hover:text-slate-900" : "text-white/80 hover:text-white"
             }`}
           >
-            <Phone size={14} />
+            <Phone size={16} />
             Call Us
           </a>
+          
           <Link
             to="/contact"
-            className="btn-gold text-sm px-5 py-2.5"
+            className="btn-primary text-sm px-6 py-2.5"
           >
             Get in Touch
           </Link>
         </div>
 
-        {/* Mobile toggle */}
+        {/* Mobile Menu Button */}
         <button
-          className={`md:hidden transition-colors ${
-            scrolled ? "text-forest-800" : "text-white"
+          className={`md:hidden p-2 transition-colors rounded-xl ${
+            scrolled ? "text-slate-900 hover:bg-slate-100" : "text-white hover:bg-white/10"
           }`}
           onClick={() => setOpen(!open)}
+          aria-label="Toggle menu"
         >
-          {open ? <X size={22} /> : <Menu size={22} />}
+          {open ? <X size={26} /> : <Menu size={26} />}
         </button>
       </nav>
 
-      {/* Mobile drawer */}
-      {open && (
-        <div className="md:hidden bg-white border-t border-sand-200 px-5 pb-5 pt-3 shadow-lg">
+      {/* Mobile Menu - Slide Down with Better UX */}
+      <div
+        className={`md:hidden bg-white border-t border-slate-100 shadow-xl overflow-hidden transition-all duration-300 ${
+          open ? "max-h-screen opacity-100" : "max-h-0 opacity-0"
+        }`}
+      >
+        <div className="px-5 py-8 space-y-2">
           {navLinks.map((link) => (
             <NavLink
               key={link.to}
@@ -104,23 +126,35 @@ export default function Navbar() {
               end={link.to === "/"}
               onClick={() => setOpen(false)}
               className={({ isActive }) =>
-                `block py-3 text-sm font-medium border-b border-sand-100 ${
-                  isActive ? "text-gold-500" : "text-forest-700"
+                `block px-5 py-4 rounded-2xl text-base font-medium transition-all ${
+                  isActive
+                    ? "bg-cyan-50 text-cyan-700 font-semibold"
+                    : "text-slate-700 hover:bg-slate-50"
                 }`
               }
             >
               {link.label}
             </NavLink>
           ))}
+
+          <div className="pt-6 border-t border-slate-100">
+            <a
+              href="tel:+94XXXXXXXXX"
+              className="flex items-center justify-center gap-3 w-full py-4 text-slate-700 hover:bg-slate-50 rounded-2xl transition-colors font-medium"
+            >
+              <Phone size={20} /> Call Us Now
+            </a>
+          </div>
+
           <Link
             to="/contact"
             onClick={() => setOpen(false)}
-            className="btn-gold w-full justify-center mt-4 py-3"
+            className="btn-primary w-full justify-center py-3.5 mt-4"
           >
             Get in Touch
           </Link>
         </div>
-      )}
+      </div>
     </header>
   );
 }

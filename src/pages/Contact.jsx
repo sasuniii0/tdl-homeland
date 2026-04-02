@@ -62,7 +62,7 @@ export default function Contact() {
   const handleSubmit = (e) => {
     e.preventDefault();
     setLoading(true);
-    // Simulate submission — replace with real API/EmailJS/Formspree call
+    // Simulate submission — replace with real API later
     setTimeout(() => {
       setLoading(false);
       setSubmitted(true);
@@ -72,60 +72,55 @@ export default function Contact() {
   return (
     <div className="pt-16">
       {/* Header */}
-      <div className="bg-forest-800 py-14 px-5 md:px-10">
+      <div className="bg-slate-950 py-16 px-5 md:px-10">
         <div className="max-w-7xl mx-auto">
-          <p className="text-gold-400 text-xs font-medium tracking-widest uppercase mb-3">
+          <p className="text-cyan-400 text-xs font-medium tracking-widest uppercase mb-3">
             Get In Touch
           </p>
-          <h1 className="font-serif text-4xl font-bold text-white mb-2">
+          <h1 className="font-serif text-4xl md:text-5xl font-bold text-white mb-3">
             Contact Us
           </h1>
-          <p className="text-forest-300 text-sm max-w-md">
-            Reach out for a free consultation, property viewing, or any
-            question — we respond within 24 hours.
+          <p className="text-slate-400 text-lg max-w-md">
+            Reach out for a free consultation, property viewing, or any question — we respond within 24 hours.
           </p>
         </div>
       </div>
 
-      {/* Main content */}
-      <section className="py-16 bg-white">
+      {/* Main Content */}
+      <section className="py-24 bg-white">
         <div className="max-w-7xl mx-auto px-5 md:px-10">
           <div className="grid grid-cols-1 lg:grid-cols-5 gap-12">
 
-            {/* Left — contact info */}
-            <div className="lg:col-span-2 space-y-5">
+            {/* Left - Contact Info */}
+            <div className="lg:col-span-2 space-y-6">
               <div>
-                <p className="section-tag">Direct Contact</p>
-                <h2 className="font-serif text-2xl font-semibold text-forest-800 mb-2">
+                <p className="section-tag text-emerald-600">Direct Contact</p>
+                <h2 className="font-serif text-3xl font-semibold text-slate-900 mb-3">
                   We'd love to hear from you
                 </h2>
-                <p className="text-forest-500 text-sm leading-relaxed">
-                  Visit us at our Galle Road office, call us directly, or send a
-                  message and we'll get back to you the same day.
+                <p className="text-slate-600 leading-relaxed">
+                  Visit us at our Galle Road office, call us directly, or send a message and we'll get back to you the same day.
                 </p>
               </div>
 
-              <div className="space-y-3 pt-2">
+              <div className="space-y-4">
                 {contactInfo.map((item) => (
                   <div
                     key={item.label}
-                    className="flex items-start gap-4 bg-sand-50 border border-sand-200
-                               rounded-xl p-4 hover:border-forest-200 transition-colors"
+                    className="flex items-start gap-4 bg-slate-50 border border-slate-200 rounded-2xl p-6 hover:border-cyan-200 transition-all hover:shadow-md"
                   >
-                    <div className="w-9 h-9 rounded-lg bg-forest-100 flex items-center justify-center flex-shrink-0">
-                      <item.icon size={15} className="text-forest-700" />
+                    <div className="w-10 h-10 rounded-xl bg-slate-100 flex items-center justify-center flex-shrink-0">
+                      <item.icon size={18} className="text-slate-700" />
                     </div>
-                    <div>
-                      <p className="text-xs font-medium text-forest-500 mb-0.5">
-                        {item.label}
-                      </p>
-                      <p className="text-sm text-forest-800">{item.value}</p>
+                    <div className="flex-1">
+                      <p className="text-xs font-medium text-slate-500 mb-1">{item.label}</p>
+                      <p className="text-slate-800">{item.value}</p>
                       {item.href && item.linkText && (
                         <a
                           href={item.href}
                           target={item.href.startsWith("http") ? "_blank" : undefined}
                           rel="noopener noreferrer"
-                          className="text-xs text-gold-600 hover:text-gold-700 font-medium mt-1 inline-block"
+                          className="text-cyan-600 hover:text-cyan-700 text-sm font-medium mt-2 inline-block"
                         >
                           {item.linkText}
                         </a>
@@ -140,33 +135,33 @@ export default function Contact() {
                 href="https://wa.me/94XXXXXXXXX?text=Hi%20TDL%20Home%20Land%2C%20I%27d%20like%20a%20free%20consultation."
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center justify-center gap-3 w-full
-                           bg-[#25D366] hover:bg-[#1da851] text-white
-                           py-3.5 rounded-xl text-sm font-medium transition-colors"
+                className="flex items-center justify-center gap-3 w-full bg-[#25D366] hover:bg-[#1da851] text-white py-4 rounded-2xl text-sm font-semibold transition-all"
               >
-                <MessageCircle size={17} fill="white" stroke="none" />
+                <MessageCircle size={18} fill="white" stroke="none" />
                 Chat on WhatsApp
               </a>
             </div>
 
-            {/* Right — form */}
+            {/* Right - Form */}
             <div className="lg:col-span-3">
               {submitted ? (
-                <div className="h-full min-h-[420px] flex flex-col items-center justify-center
-                                bg-forest-50 border border-forest-100 rounded-2xl p-10 text-center">
-                  <div className="w-16 h-16 rounded-full bg-forest-100 flex items-center justify-center mb-5">
-                    <CheckCircle2 size={32} className="text-forest-600" />
+                <div className="min-h-[480px] flex flex-col items-center justify-center bg-slate-50 border border-slate-200 rounded-3xl p-12 text-center">
+                  <div className="w-20 h-20 rounded-full bg-emerald-100 flex items-center justify-center mb-6">
+                    <CheckCircle2 size={42} className="text-emerald-600" />
                   </div>
-                  <h3 className="font-serif text-2xl font-semibold text-forest-800 mb-3">
+                  <h3 className="font-serif text-3xl font-semibold text-slate-900 mb-3">
                     Message Received!
                   </h3>
-                  <p className="text-forest-500 text-sm max-w-xs leading-relaxed mb-6">
-                    Thank you, <strong className="text-forest-700">{form.name}</strong>. We'll
-                    get back to you within 24 hours. For urgent enquiries, please WhatsApp us directly.
+                  <p className="text-slate-600 max-w-xs leading-relaxed">
+                    Thank you, <strong>{form.name}</strong>. We'll get back to you within 24 hours. 
+                    For urgent enquiries, please WhatsApp us directly.
                   </p>
                   <button
-                    onClick={() => { setSubmitted(false); setForm({ name:"",phone:"",email:"",interest:"",message:"" }); }}
-                    className="btn-outline-dark text-sm px-6 py-2.5"
+                    onClick={() => {
+                      setSubmitted(false);
+                      setForm({ name: "", phone: "", email: "", interest: "", message: "" });
+                    }}
+                    className="mt-8 btn-outline px-8 py-3"
                   >
                     Send Another Message
                   </button>
@@ -174,20 +169,19 @@ export default function Contact() {
               ) : (
                 <form
                   onSubmit={handleSubmit}
-                  className="bg-sand-50 border border-sand-200 rounded-2xl p-8 space-y-5"
+                  className="bg-slate-50 border border-slate-200 rounded-3xl p-10 space-y-6"
                 >
                   <div>
-                    <p className="section-tag">Send a Message</p>
-                    <h2 className="font-serif text-2xl font-semibold text-forest-800">
+                    <p className="section-tag text-cyan-600">Send a Message</p>
+                    <h2 className="font-serif text-3xl font-semibold text-slate-900">
                       Free Consultation Request
                     </h2>
                   </div>
 
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    {/* Name */}
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                     <div>
-                      <label className="block text-xs font-medium text-forest-600 mb-1.5">
-                        Full Name <span className="text-gold-500">*</span>
+                      <label className="block text-sm font-medium text-slate-700 mb-2">
+                        Full Name <span className="text-red-500">*</span>
                       </label>
                       <input
                         type="text"
@@ -196,16 +190,13 @@ export default function Contact() {
                         onChange={handleChange}
                         required
                         placeholder="Eg: Chamara Perera"
-                        className="w-full px-4 py-2.5 text-sm bg-white border border-sand-300
-                                   rounded-lg focus:outline-none focus:ring-2 focus:ring-forest-300
-                                   focus:border-forest-400 placeholder:text-forest-300"
+                        className="w-full px-5 py-3 bg-white border border-slate-300 rounded-2xl focus:outline-none focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500 placeholder:text-slate-400"
                       />
                     </div>
 
-                    {/* Phone */}
                     <div>
-                      <label className="block text-xs font-medium text-forest-600 mb-1.5">
-                        Phone Number <span className="text-gold-500">*</span>
+                      <label className="block text-sm font-medium text-slate-700 mb-2">
+                        Phone Number <span className="text-red-500">*</span>
                       </label>
                       <input
                         type="tel"
@@ -214,45 +205,37 @@ export default function Contact() {
                         onChange={handleChange}
                         required
                         placeholder="+94 77 XXX XXXX"
-                        className="w-full px-4 py-2.5 text-sm bg-white border border-sand-300
-                                   rounded-lg focus:outline-none focus:ring-2 focus:ring-forest-300
-                                   focus:border-forest-400 placeholder:text-forest-300"
+                        className="w-full px-5 py-3 bg-white border border-slate-300 rounded-2xl focus:outline-none focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500 placeholder:text-slate-400"
                       />
                     </div>
                   </div>
 
-                  {/* Email */}
                   <div>
-                    <label className="block text-xs font-medium text-forest-600 mb-1.5">
-                      Email Address
-                    </label>
+                    <label className="block text-sm font-medium text-slate-700 mb-2">Email Address</label>
                     <input
                       type="email"
                       name="email"
                       value={form.email}
                       onChange={handleChange}
                       placeholder="your@email.com"
-                      className="w-full px-4 py-2.5 text-sm bg-white border border-sand-300
-                                 rounded-lg focus:outline-none focus:ring-2 focus:ring-forest-300
-                                 focus:border-forest-400 placeholder:text-forest-300"
+                      className="w-full px-5 py-3 bg-white border border-slate-300 rounded-2xl focus:outline-none focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500 placeholder:text-slate-400"
                     />
                   </div>
 
-                  {/* Interest */}
                   <div>
-                    <label className="block text-xs font-medium text-forest-600 mb-1.5">
-                      I'm Interested In <span className="text-gold-500">*</span>
+                    <label className="block text-sm font-medium text-slate-700 mb-3">
+                      I'm Interested In <span className="text-red-500">*</span>
                     </label>
-                    <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
+                    <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
                       {interests.map((item) => (
                         <button
                           key={item}
                           type="button"
                           onClick={() => setForm({ ...form, interest: item })}
-                          className={`py-2 px-3 rounded-lg text-xs font-medium border transition-all duration-150 ${
+                          className={`py-3 px-4 rounded-2xl text-sm font-medium border transition-all ${
                             form.interest === item
-                              ? "bg-forest-700 text-white border-forest-700"
-                              : "bg-white text-forest-600 border-sand-300 hover:border-forest-300"
+                              ? "bg-cyan-600 text-white border-cyan-600"
+                              : "bg-white text-slate-700 border-slate-300 hover:border-slate-400"
                           }`}
                         >
                           {item}
@@ -261,32 +244,26 @@ export default function Contact() {
                     </div>
                   </div>
 
-                  {/* Message */}
                   <div>
-                    <label className="block text-xs font-medium text-forest-600 mb-1.5">
-                      Your Message
-                    </label>
+                    <label className="block text-sm font-medium text-slate-700 mb-2">Your Message</label>
                     <textarea
                       name="message"
                       value={form.message}
                       onChange={handleChange}
-                      rows={4}
+                      rows={5}
                       placeholder="Tell us about your requirements — budget, location preference, type of property..."
-                      className="w-full px-4 py-2.5 text-sm bg-white border border-sand-300
-                                 rounded-lg focus:outline-none focus:ring-2 focus:ring-forest-300
-                                 focus:border-forest-400 placeholder:text-forest-300 resize-none"
+                      className="w-full px-5 py-3 bg-white border border-slate-300 rounded-3xl focus:outline-none focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500 placeholder:text-slate-400 resize-none"
                     />
                   </div>
 
-                  {/* Submit */}
                   <button
                     type="submit"
                     disabled={loading || !form.name || !form.phone || !form.interest}
-                    className="w-full btn-primary justify-center py-3.5 disabled:opacity-50 disabled:cursor-not-allowed"
+                    className="w-full bg-cyan-600 hover:bg-cyan-700 text-white py-4 rounded-2xl font-semibold flex items-center justify-center gap-3 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
                   >
                     {loading ? (
                       <>
-                        <svg className="animate-spin w-4 h-4" viewBox="0 0 24 24" fill="none">
+                        <svg className="animate-spin w-5 h-5" viewBox="0 0 24 24" fill="none">
                           <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
                           <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8H4z" />
                         </svg>
@@ -294,15 +271,10 @@ export default function Contact() {
                       </>
                     ) : (
                       <>
-                        <Send size={15} />
-                        Send Message
+                        <Send size={18} /> Send Message
                       </>
                     )}
                   </button>
-
-                  <p className="text-center text-xs text-forest-400">
-                    We typically respond within a few hours during business hours.
-                  </p>
                 </form>
               )}
             </div>
@@ -310,33 +282,26 @@ export default function Contact() {
         </div>
       </section>
 
-      {/* Google Map embed */}
-      <section className="bg-sand-50 border-t border-sand-200">
-        <div className="max-w-7xl mx-auto px-5 md:px-10 py-12">
-          <div className="mb-6">
-            <p className="section-tag">Our Location</p>
-            <h2 className="font-serif text-2xl font-semibold text-forest-800">
-              Find Us on the Map
-            </h2>
-            <p className="text-forest-500 text-sm mt-1">
-              No. 396/3, Galle Road, Thalpitiya, Wadduwa, Sri Lanka
-            </p>
+      {/* Google Map */}
+      <section className="bg-slate-50 border-t border-slate-100 py-16">
+        <div className="max-w-7xl mx-auto px-5 md:px-10">
+          <div className="mb-8">
+            <p className="section-tag text-cyan-600">Our Location</p>
+            <h2 className="font-serif text-3xl font-semibold text-slate-900">Find Us on the Map</h2>
           </div>
-          <div className="rounded-2xl overflow-hidden border border-sand-200 shadow-card">
+          
+          <div className="rounded-3xl overflow-hidden border border-slate-200 shadow-xl">
             <iframe
               title="TDL Home Land Location"
               src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3961.5!2d79.9200!3d6.6300!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNsKwMzcnNDguMCJOIDc5wrA1NScxMi4wIkU!5e0!3m2!1sen!2slk!4v1700000000000!5m2!1sen!2slk"
               width="100%"
-              height="380"
-              style={{ border: 0, display: "block" }}
+              height="420"
+              style={{ border: 0 }}
               allowFullScreen=""
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"
             />
           </div>
-          <p className="text-xs text-forest-400 mt-3 text-center">
-            On Galle Road between Wadduwa and Panadura — easy to find, plenty of parking.
-          </p>
         </div>
       </section>
     </div>

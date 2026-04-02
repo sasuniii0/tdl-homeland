@@ -6,8 +6,8 @@ import { properties } from "../data";
 const TYPES = ["All", "House", "Land", "Villa"];
 
 export default function Properties() {
-  const [search, setSearch]     = useState("");
-  const [activeType, setType]   = useState("All");
+  const [search, setSearch] = useState("");
+  const [activeType, setType] = useState("All");
 
   const filtered = properties.filter((p) => {
     const matchType =
@@ -22,44 +22,44 @@ export default function Properties() {
 
   return (
     <div className="pt-16">
-      {/* Page header */}
-      <div className="bg-forest-800 py-14 px-5 md:px-10">
+      {/* Page Header */}
+      <div className="bg-slate-950 py-16 px-5 md:px-10">
         <div className="max-w-7xl mx-auto">
-          <p className="text-gold-400 text-xs font-medium tracking-widest uppercase mb-3">Our Listings</p>
-          <h1 className="font-serif text-4xl font-bold text-white mb-2">Properties for Sale</h1>
-          <p className="text-forest-300 text-sm max-w-md">
+          <p className="text-cyan-400 text-xs font-medium tracking-widest uppercase mb-3">Our Listings</p>
+          <h1 className="font-serif text-4xl md:text-5xl font-bold text-white mb-3">Properties for Sale</h1>
+          <p className="text-slate-400 text-lg max-w-md">
             Browse houses, villas and land across Wadduwa, Panadura and the Western Province coastal belt.
           </p>
         </div>
       </div>
 
-      {/* Filters */}
-      <div className="bg-white border-b border-sand-200 sticky top-16 z-30">
-        <div className="max-w-7xl mx-auto px-5 md:px-10 py-4 flex flex-col sm:flex-row gap-3 items-start sm:items-center justify-between">
-          {/* Search */}
-          <div className="relative w-full sm:w-72">
-            <Search size={14} className="absolute left-3 top-1/2 -translate-y-1/2 text-forest-400" />
+      {/* Filters Bar */}
+      <div className="bg-white border-b border-slate-200 sticky top-16 z-30">
+        <div className="max-w-7xl mx-auto px-5 md:px-10 py-5 flex flex-col sm:flex-row gap-4 items-start sm:items-center justify-between">
+          {/* Search Input */}
+          <div className="relative w-full sm:w-80">
+            <Search size={18} className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400" />
             <input
               type="text"
               placeholder="Search by name or location..."
               value={search}
               onChange={(e) => setSearch(e.target.value)}
-              className="w-full pl-9 pr-4 py-2.5 text-sm bg-sand-50 border border-sand-200 rounded-lg
-                         focus:outline-none focus:ring-2 focus:ring-forest-300 focus:border-forest-400
-                         placeholder:text-forest-400"
+              className="w-full pl-11 pr-4 py-3 text-sm bg-slate-50 border border-slate-200 rounded-2xl
+                         focus:outline-none focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500
+                         placeholder:text-slate-400"
             />
           </div>
 
-          {/* Type tabs */}
-          <div className="flex gap-2">
+          {/* Type Filter Tabs */}
+          <div className="flex gap-2 flex-wrap">
             {TYPES.map((t) => (
               <button
                 key={t}
                 onClick={() => setType(t)}
-                className={`px-4 py-2 rounded-lg text-xs font-medium transition-all duration-150 ${
+                className={`px-6 py-2.5 rounded-2xl text-sm font-medium transition-all duration-200 ${
                   activeType === t
-                    ? "bg-forest-700 text-white"
-                    : "bg-sand-50 text-forest-600 hover:bg-sand-100 border border-sand-200"
+                    ? "bg-cyan-600 text-white shadow-md"
+                    : "bg-white text-slate-700 border border-slate-200 hover:border-slate-300"
                 }`}
               >
                 {t}
@@ -69,19 +69,21 @@ export default function Properties() {
         </div>
       </div>
 
-      {/* Grid */}
-      <div className="max-w-7xl mx-auto px-5 md:px-10 py-12">
+      {/* Properties Grid */}
+      <div className="max-w-7xl mx-auto px-5 md:px-10 py-16">
         {filtered.length === 0 ? (
-          <div className="text-center py-20 text-forest-400">
-            <p className="text-4xl mb-4">🔍</p>
-            <p className="text-sm">No properties match your search.</p>
+          <div className="text-center py-24 text-slate-400">
+            <p className="text-5xl mb-4">🔍</p>
+            <p className="text-lg font-medium text-slate-600">No properties match your search.</p>
+            <p className="text-sm mt-2">Try adjusting your filters or search term.</p>
           </div>
         ) : (
           <>
-            <p className="text-xs text-forest-500 mb-6">
-              Showing <span className="font-medium text-forest-700">{filtered.length}</span> properties
+            <p className="text-sm text-slate-500 mb-8">
+              Showing <span className="font-semibold text-slate-700">{filtered.length}</span> properties
             </p>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
               {filtered.map((p) => (
                 <PropertyCard key={p.id} property={p} />
               ))}

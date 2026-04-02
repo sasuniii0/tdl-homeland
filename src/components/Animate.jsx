@@ -1,13 +1,13 @@
 import { motion } from "framer-motion";
 
-/* Fade up — use on any section element */
+/* Fade Up — Clean & Elegant */
 export function FadeUp({ children, delay = 0, className = "" }) {
   return (
     <motion.div
-      initial={{ opacity: 0, y: 28 }}
+      initial={{ opacity: 0, y: 40 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-60px" }}
-      transition={{ duration: 0.55, delay, ease: [0.22, 1, 0.36, 1] }}
+      viewport={{ once: true, margin: "-80px" }}
+      transition={{ duration: 0.7, delay, ease: [0.22, 1, 0.36, 1] }}
       className={className}
     >
       {children}
@@ -15,16 +15,21 @@ export function FadeUp({ children, delay = 0, className = "" }) {
   );
 }
 
-/* Stagger children — wrap a grid/list */
+/* Stagger Grid — For grids and lists */
 export function StaggerGrid({ children, className = "" }) {
   return (
     <motion.div
       initial="hidden"
       whileInView="visible"
-      viewport={{ once: true, margin: "-60px" }}
+      viewport={{ once: true, margin: "-80px" }}
       variants={{
         hidden: {},
-        visible: { transition: { staggerChildren: 0.08 } },
+        visible: { 
+          transition: { 
+            staggerChildren: 0.1,
+            delayChildren: 0.1 
+          } 
+        },
       }}
       className={className}
     >
@@ -33,13 +38,17 @@ export function StaggerGrid({ children, className = "" }) {
   );
 }
 
-/* Individual stagger child */
+/* Stagger Item */
 export function StaggerItem({ children, className = "" }) {
   return (
     <motion.div
       variants={{
-        hidden: { opacity: 0, y: 24 },
-        visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] } },
+        hidden: { opacity: 0, y: 30 },
+        visible: { 
+          opacity: 1, 
+          y: 0, 
+          transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] } 
+        },
       }}
       className={className}
     >
@@ -48,14 +57,14 @@ export function StaggerItem({ children, className = "" }) {
   );
 }
 
-/* Scale in — for stat numbers, icons */
+/* Scale In — Great for stats, icons, and numbers */
 export function ScaleIn({ children, delay = 0, className = "" }) {
   return (
     <motion.div
-      initial={{ opacity: 0, scale: 0.85 }}
+      initial={{ opacity: 0, scale: 0.8 }}
       whileInView={{ opacity: 1, scale: 1 }}
       viewport={{ once: true }}
-      transition={{ duration: 0.45, delay, ease: "backOut" }}
+      transition={{ duration: 0.55, delay, ease: "backOut" }}
       className={className}
     >
       {children}
@@ -63,14 +72,14 @@ export function ScaleIn({ children, delay = 0, className = "" }) {
   );
 }
 
-/* Slide in from left */
+/* Slide from Left */
 export function SlideLeft({ children, delay = 0, className = "" }) {
   return (
     <motion.div
-      initial={{ opacity: 0, x: -32 }}
+      initial={{ opacity: 0, x: -50 }}
       whileInView={{ opacity: 1, x: 0 }}
       viewport={{ once: true }}
-      transition={{ duration: 0.55, delay, ease: [0.22, 1, 0.36, 1] }}
+      transition={{ duration: 0.65, delay, ease: [0.22, 1, 0.36, 1] }}
       className={className}
     >
       {children}
@@ -78,14 +87,14 @@ export function SlideLeft({ children, delay = 0, className = "" }) {
   );
 }
 
-/* Slide in from right */
+/* Slide from Right */
 export function SlideRight({ children, delay = 0, className = "" }) {
   return (
     <motion.div
-      initial={{ opacity: 0, x: 32 }}
+      initial={{ opacity: 0, x: 50 }}
       whileInView={{ opacity: 1, x: 0 }}
       viewport={{ once: true }}
-      transition={{ duration: 0.55, delay, ease: [0.22, 1, 0.36, 1] }}
+      transition={{ duration: 0.65, delay, ease: [0.22, 1, 0.36, 1] }}
       className={className}
     >
       {children}

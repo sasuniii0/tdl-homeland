@@ -4,90 +4,94 @@ export default function PropertyCard({ property }) {
   const { title, location, price, priceShort, type, status, beds, baths, perches, sqft, tag, emoji, gradient, featured } = property;
 
   return (
-    <div className="prop-card group">
+    <div className="group bg-white border border-slate-200 rounded-3xl overflow-hidden hover:shadow-2xl hover:-translate-y-2 transition-all duration-300">
+      
       {/* Thumbnail */}
-      <div className={`relative h-44 bg-gradient-to-br ${gradient} flex items-center justify-center overflow-hidden`}>
-        <span className="text-5xl select-none">{emoji}</span>
+      <div className={`relative h-56 bg-gradient-to-br ${gradient} flex items-center justify-center overflow-hidden`}>
+        <span className="text-6xl select-none drop-shadow-md">{emoji}</span>
 
-        {/* Tag badges */}
-        <div className="absolute top-3 left-3 flex gap-2">
-          <span className="bg-forest-700 text-white text-[10px] font-medium px-2.5 py-1 rounded-full tracking-wide">
+        {/* Status & Tag Badges */}
+        <div className="absolute top-4 left-4 flex flex-wrap gap-2">
+          <span className="bg-slate-900/90 text-white text-xs font-medium px-3 py-1 rounded-full backdrop-blur-md">
             {status}
           </span>
           {tag && (
-            <span className="bg-gold-500 text-white text-[10px] font-medium px-2.5 py-1 rounded-full tracking-wide">
+            <span className="bg-emerald-600 text-white text-xs font-medium px-3 py-1 rounded-full backdrop-blur-md">
               {tag}
             </span>
           )}
         </div>
 
-        {/* Type pill */}
-        <div className="absolute bottom-3 right-3">
-          <span className="bg-white/90 backdrop-blur-sm text-forest-700 text-[10px] font-medium px-2.5 py-1 rounded-full capitalize">
+        {/* Type Pill */}
+        <div className="absolute bottom-4 right-4">
+          <span className="bg-white/95 backdrop-blur-md text-slate-700 text-xs font-semibold px-3.5 py-1 rounded-full capitalize shadow-sm">
             {type}
           </span>
         </div>
 
-        {/* Hover overlay arrow */}
-        <div className="absolute inset-0 bg-forest-900/0 group-hover:bg-forest-900/10 transition-all duration-300 flex items-center justify-center">
-          <div className="bg-white rounded-full p-2 opacity-0 group-hover:opacity-100 transition-all duration-300 translate-y-2 group-hover:translate-y-0 shadow-lg">
-            <ArrowUpRight size={16} className="text-forest-700" />
+        {/* Hover Overlay */}
+        <div className="absolute inset-0 bg-slate-900/0 group-hover:bg-slate-900/20 transition-all duration-300 flex items-center justify-center">
+          <div className="bg-white rounded-2xl p-3 opacity-0 group-hover:opacity-100 translate-y-4 group-hover:translate-y-0 transition-all duration-300 shadow-xl">
+            <ArrowUpRight size={20} className="text-slate-700" />
           </div>
         </div>
+
+        {/* Featured Ribbon */}
+        {featured && (
+          <div className="absolute top-4 right-4 bg-gradient-to-r from-cyan-500 to-emerald-500 text-white text-[10px] font-bold px-3 py-1 rounded-full shadow-md">
+            FEATURED
+          </div>
+        )}
       </div>
 
-      {/* Body */}
-      <div className="p-4">
+      {/* Card Body */}
+      <div className="p-5">
         {/* Price */}
-        <div className="flex items-center justify-between mb-1">
-          <span className="font-serif text-xl font-semibold text-gold-600">
+        <div className="flex items-baseline justify-between mb-3">
+          <span className="font-serif text-2xl font-semibold text-slate-900">
             LKR {priceShort}
           </span>
-          {featured && (
-            <span className="text-[10px] font-medium text-gold-500 bg-gold-50 border border-gold-200 px-2 py-0.5 rounded-full">
-              Featured
-            </span>
-          )}
         </div>
 
         {/* Title */}
-        <h3 className="text-sm font-medium text-forest-800 mb-1.5 group-hover:text-forest-600 transition-colors">
+        <h3 className="text-base font-semibold text-slate-800 line-clamp-2 group-hover:text-cyan-700 transition-colors mb-2 min-h-[42px]">
           {title}
         </h3>
 
         {/* Location */}
-        <div className="flex items-center gap-1 text-forest-500 mb-3">
-          <MapPin size={11} />
-          <span className="text-xs">{location}</span>
+        <div className="flex items-center gap-1.5 text-slate-500 mb-4">
+          <MapPin size={15} className="flex-shrink-0" />
+          <span className="text-sm">{location}</span>
         </div>
 
-        {/* Divider */}
-        <div className="border-t border-sand-200 pt-3">
-          <div className="flex items-center gap-4">
-            {beds !== null && (
-              <div className="flex items-center gap-1 text-forest-500">
-                <Bed size={12} />
-                <span className="text-xs">{beds} Bed</span>
-              </div>
-            )}
-            {baths !== null && (
-              <div className="flex items-center gap-1 text-forest-500">
-                <Bath size={12} />
-                <span className="text-xs">{baths} Bath</span>
-              </div>
-            )}
-            {sqft && (
-              <div className="flex items-center gap-1 text-forest-500">
-                <Maximize2 size={11} />
-                <span className="text-xs">{sqft.toLocaleString()} sqft</span>
-              </div>
-            )}
-            {perches && (
-              <div className="flex items-center gap-1 text-forest-500">
-                <span className="text-xs">{perches} Perch</span>
-              </div>
-            )}
-          </div>
+        {/* Features */}
+        <div className="flex items-center gap-5 text-sm border-t border-slate-100 pt-4">
+          {beds !== null && (
+            <div className="flex items-center gap-1.5 text-slate-600">
+              <Bed size={16} />
+              <span>{beds}</span>
+            </div>
+          )}
+          
+          {baths !== null && (
+            <div className="flex items-center gap-1.5 text-slate-600">
+              <Bath size={16} />
+              <span>{baths}</span>
+            </div>
+          )}
+
+          {sqft && (
+            <div className="flex items-center gap-1.5 text-slate-600">
+              <Maximize2 size={16} />
+              <span>{sqft.toLocaleString()}</span>
+            </div>
+          )}
+
+          {perches && (
+            <div className="flex items-center gap-1 text-slate-600">
+              <span>{perches} Perch</span>
+            </div>
+          )}
         </div>
       </div>
     </div>
