@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { NavLink, Link } from "react-router-dom";
+import { NavLink, Link, useLocation } from "react-router-dom";
 import { Menu, X, Phone } from "lucide-react";
 
 const navLinks = [
@@ -9,17 +9,18 @@ const navLinks = [
   { to: "/contact",    label: "Contact" },
 ];
 
-export default function Navbar() {
+export default function Navbar({ transparent = false }) {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [hidden, setHidden] = useState(false);
   const [lastScrollY, setLastScrollY] = useState(0);
+  
+  const location = useLocation();
 
   useEffect(() => {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
 
-      // Background change
       setScrolled(currentScrollY > 30);
 
       // Smart hide on scroll down
@@ -36,10 +37,16 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, [lastScrollY]);
 
+  // Force solid background on non-home pages
+  const isHome = location.pathname === "/";
+  const shouldBeTransparent = transparent && isHome;
+
   return (
     <header
       className={`fixed top-0 inset-x-0 z-50 transition-all duration-500 ${
-        scrolled ? "bg-white/95 backdrop-blur-lg shadow-lg border-b border-slate-200" : "bg-transparent"
+        scrolled || !shouldBeTransparent
+          ? "bg-white/95 backdrop-blur-lg shadow-lg border-b border-slate-200"
+          : "bg-transparent"
       } ${hidden ? "-translate-y-full" : "translate-y-0"}`}
     >
       <nav className="max-w-7xl mx-auto px-5 md:px-10 h-16 flex items-center justify-between">
@@ -47,14 +54,14 @@ export default function Navbar() {
         {/* Logo */}
         <Link to="/" className="flex items-center gap-2 group">
           <div className={`w-8 h-8 rounded-2xl flex items-center justify-center transition-all duration-300 ${
-            scrolled ? "bg-slate-900" : "bg-white shadow-md"
+            scrolled || !shouldBeTransparent ? "bg-slate-900" : "bg-white shadow-md"
           }`}>
             <span className={`text-lg font-bold transition-colors ${
-              scrolled ? "text-white" : "text-slate-900"
+              scrolled || !shouldBeTransparent ? "text-white" : "text-slate-900"
             }`}>T</span>
           </div>
           <span className={`font-serif text-2xl font-bold tracking-tighter transition-colors ${
-            scrolled ? "text-slate-900" : "text-white"
+            scrolled || !shouldBeTransparent ? "text-slate-900" : "text-white"
           }`}>
             TDL <span className="text-cyan-500">Home</span> Land
           </span>
@@ -70,8 +77,8 @@ export default function Navbar() {
               className={({ isActive }) =>
                 `text-sm font-medium transition-all duration-200 hover:text-cyan-600 ${
                   isActive
-                    ? scrolled ? "text-cyan-600 font-semibold" : "text-white"
-                    : scrolled ? "text-slate-600" : "text-white/80"
+                    ? (scrolled || !shouldBeTransparent) ? "text-cyan-600 font-semibold" : "text-white"
+                    : (scrolled || !shouldBeTransparent) ? "text-slate-600" : "text-white/80"
                 }`
               }
             >
@@ -85,7 +92,9 @@ export default function Navbar() {
           <a
             href="tel:+94XXXXXXXXX"
             className={`flex items-center gap-2 text-sm font-medium transition-colors ${
-              scrolled ? "text-slate-700 hover:text-slate-900" : "text-white/80 hover:text-white"
+              scrolled || !shouldBeTransparent 
+                ? "text-slate-700 hover:text-slate-900" 
+                : "text-white/80 hover:text-white"
             }`}
           >
             <Phone size={16} />
@@ -103,7 +112,9 @@ export default function Navbar() {
         {/* Mobile Menu Button */}
         <button
           className={`md:hidden p-2 transition-colors rounded-xl ${
-            scrolled ? "text-slate-900 hover:bg-slate-100" : "text-white hover:bg-white/10"
+            scrolled || !shouldBeTransparent 
+              ? "text-slate-900 hover:bg-slate-100" 
+              : "text-white hover:bg-white/10"
           }`}
           onClick={() => setOpen(!open)}
           aria-label="Toggle menu"
@@ -112,7 +123,7 @@ export default function Navbar() {
         </button>
       </nav>
 
-      {/* Mobile Menu - Slide Down with Better UX */}
+      {/* Mobile Menu */}
       <div
         className={`md:hidden bg-white border-t border-slate-100 shadow-xl overflow-hidden transition-all duration-300 ${
           open ? "max-h-screen opacity-100" : "max-h-0 opacity-0"

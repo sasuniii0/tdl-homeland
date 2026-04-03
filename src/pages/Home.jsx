@@ -1,5 +1,17 @@
 import { Link } from "react-router-dom";
-import { ArrowRight, ChevronDown, Star, CheckCircle2 } from "lucide-react";
+import { 
+  ArrowRight, 
+  ChevronDown, 
+  Star, 
+  CheckCircle2,
+  MapPin,
+  FileCheck,
+  Handshake,
+  Award,
+  Home as HomeIcon,     // ← Renamed to avoid conflict
+  Landmark,
+  Hammer
+} from "lucide-react";
 import { motion } from "framer-motion";
 import PropertyCard from "../components/PropertyCard";
 import { FadeUp, StaggerGrid, StaggerItem } from "../components/Animate";
@@ -17,7 +29,7 @@ function Hero() {
       <div className="absolute -bottom-32 -left-32 w-96 h-96 rounded-full bg-emerald-500/10 blur-3xl pointer-events-none" />
 
       <div className="relative max-w-7xl mx-auto px-5 md:px-10 pt-24 pb-16 flex justify-center">
-        <div className="max-w-3xl text-center">   {/* ← Increased width + centered */}
+        <div className="max-w-3xl text-center">
 
           <motion.div
             initial={{ opacity: 0, y: 20 }} 
@@ -111,7 +123,12 @@ function Services() {
           {services.map((svc) => (
             <StaggerItem key={svc.id}>
               <div className="bg-white border border-slate-200 rounded-3xl p-8 hover:shadow-xl hover:-translate-y-2 transition-all duration-300 h-full group">
-                <div className="text-4xl mb-6 group-hover:scale-110 transition-transform">{svc.icon}</div>
+                <div className="text-4xl mb-6 group-hover:scale-110 transition-transform text-emerald-600">
+                  {svc.icon === "home" && <HomeIcon size={48} />}
+                  {svc.icon === "sell" && <Landmark size={48} />}
+                  {svc.icon === "land-plot" && <MapPin size={48} />}
+                  {svc.icon === "construction" && <Hammer size={48} />}
+                </div>
                 <h3 className="text-lg font-semibold text-slate-900 mb-3">{svc.title}</h3>
                 <p className="text-slate-600 leading-relaxed">{svc.desc}</p>
               </div>
@@ -150,10 +167,10 @@ function FeaturedListings() {
 
 function WhyUs() {
   const reasons = [
-    { icon: "📍", title: "Local Expertise", desc: "Deep roots in Wadduwa — we know every street, plot value, and development plan." },
-    { icon: "📄", title: "Clear Deeds Only", desc: "Every listing is legally verified before it reaches you. Zero hidden complications." },
-    { icon: "🤝", title: "End-to-End Service", desc: "Search, negotiate, build — one team handles everything under one roof." },
-    { icon: "🏆", title: "Proven Track Record", desc: "300+ satisfied clients and 150+ successful transactions since our founding." },
+    { icon: <MapPin size={48} />, title: "Local Expertise", desc: "Deep roots in Wadduwa — we know every street, plot value, and development plan." },
+    { icon: <FileCheck size={48} />, title: "Clear Deeds Only", desc: "Every listing is legally verified before it reaches you. Zero hidden complications." },
+    { icon: <Handshake size={48} />, title: "End-to-End Service", desc: "Search, negotiate, build — one team handles everything under one roof." },
+    { icon: <Award size={48} />, title: "Proven Track Record", desc: "300+ satisfied clients and 150+ successful transactions since our founding." },
   ];
 
   return (
@@ -166,10 +183,10 @@ function WhyUs() {
         </FadeUp>
 
         <StaggerGrid className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          {reasons.map((r) => (
-            <StaggerItem key={r.title}>
+          {reasons.map((r, index) => (
+            <StaggerItem key={index}>
               <div className="bg-slate-900 border border-slate-800 hover:border-cyan-500/30 rounded-3xl p-8 transition-all hover:bg-slate-800/80 h-full">
-                <div className="text-4xl mb-6">{r.icon}</div>
+                <div className="text-emerald-500 mb-6">{r.icon}</div>
                 <h3 className="text-xl font-semibold text-white mb-3">{r.title}</h3>
                 <p className="text-slate-400">{r.desc}</p>
               </div>
