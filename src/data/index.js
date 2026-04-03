@@ -139,9 +139,9 @@ export const services = [
 ];
 
 export const stats = [
-  { num: "150+", label: "Properties Sold" },
-  { num: "300+", label: "Happy Clients" },
-  { num: "12+",  label: "Years Active" },
+  { num: "100+", label: "Properties Sold" },
+  { num: "150+", label: "Happy Clients" },
+  { num: "5+",  label: "Years Active" },
   { num: "50+",  label: "Active Listings" },
 ];
 

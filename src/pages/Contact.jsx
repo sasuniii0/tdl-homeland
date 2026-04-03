@@ -12,8 +12,8 @@ const contactInfo = [
   {
     icon: Phone,
     label: "Phone",
-    value: "+94 XX XXX XXXX",
-    href: "tel:+94XXXXXXXXX",
+    value: "+94 74 114 1827",
+    href: "tel:+94741141827",
     linkText: "Call now →",
   },
   {
@@ -27,7 +27,7 @@ const contactInfo = [
     icon: MessageCircle,
     label: "WhatsApp",
     value: "Chat with us instantly",
-    href: "https://wa.me/94XXXXXXXXX",
+    href: "https://wa.me/94741141827?text=Hi%20TDL%20Home%20Land%2C%20I%27d%20like%20a%20free%20consultation.",
     linkText: "Open WhatsApp →",
   },
   {
@@ -132,7 +132,7 @@ export default function Contact() {
 
               {/* WhatsApp CTA */}
               <a
-                href="https://wa.me/94XXXXXXXXX?text=Hi%20TDL%20Home%20Land%2C%20I%27d%20like%20a%20free%20consultation."
+                href="https://wa.me/94741141827?text=Hi%20TDL%20Home%20Land%2C%20I%27d%20like%20a%20free%20consultation."
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center justify-center gap-3 w-full bg-[#25D366] hover:bg-[#1da851] text-white py-4 rounded-2xl text-sm font-semibold transition-all"

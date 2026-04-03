@@ -90,7 +90,7 @@ export default function Navbar({ transparent = false }) {
         {/* Desktop CTA */}
         <div className="hidden md:flex items-center gap-4">
           <a
-            href="tel:+94XXXXXXXXX"
+            href="tel:+94741141827"
             className={`flex items-center gap-2 text-sm font-medium transition-colors ${
               scrolled || !shouldBeTransparent 
                 ? "text-slate-700 hover:text-slate-900" 
@@ -150,7 +150,7 @@ export default function Navbar({ transparent = false }) {
 
           <div className="pt-6 border-t border-slate-100">
             <a
-              href="tel:+94XXXXXXXXX"
+              href="tel:+94741141827"
               className="flex items-center justify-center gap-3 w-full py-4 text-slate-700 hover:bg-slate-50 rounded-2xl transition-colors font-medium"
             >
               <Phone size={20} /> Call Us Now
