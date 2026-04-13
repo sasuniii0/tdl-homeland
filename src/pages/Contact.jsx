@@ -62,7 +62,7 @@ export default function Contact() {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    const phoneNumber = "94765325914"; // without + sign
+    const phoneNumber = "94741141827"; // without + sign
 
     const message = `Hi TDL Home Land,
 
