@@ -28,7 +28,9 @@ export default function Footer() {
             {/* Social Icons */}
             <div className="flex gap-3 mt-8">
               <a 
-                href="#" 
+                href="https://www.facebook.com/share/g/18GF3ZTvwd/?mibextid=wwXIfr"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="w-10 h-10 rounded-2xl bg-slate-900 hover:bg-cyan-600 transition-all flex items-center justify-center"
                 aria-label="Facebook"
               >
