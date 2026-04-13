@@ -61,12 +61,25 @@ export default function Contact() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setLoading(true);
-    // Simulate submission — replace with real API later
-    setTimeout(() => {
-      setLoading(false);
-      setSubmitted(true);
-    }, 1200);
+
+    const phoneNumber = "94765325914"; // without + sign
+
+    const message = `Hi TDL Home Land,
+
+  Name: ${form.name}
+  Phone: ${form.phone}
+  Email: ${form.email || "N/A"}
+  Interest: ${form.interest}
+
+  Message:
+  ${form.message || "N/A"}
+  `;
+
+    const encodedMessage = encodeURIComponent(message);
+
+    const whatsappURL = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
+
+    window.open(whatsappURL, "_blank");
   };
 
   return (
