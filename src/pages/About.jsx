@@ -95,8 +95,8 @@ export default function About() {
               <Phone size={20} className="text-cyan-500 mt-1 flex-shrink-0" />
               <div>
                 <p className="text-sm font-medium text-slate-900">Phone</p>
-                <a href="tel:+94XXXXXXXXX" className="text-slate-700 hover:text-cyan-600 transition-colors">
-                  +94 XX XXX XXXX
+                <a href="tel:+94741141827" className="text-slate-700 hover:text-cyan-600 transition-colors">
+                  +94741141827 
                 </a>
               </div>
             </div>
